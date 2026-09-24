@@ -1,0 +1,22 @@
+{
+  "overview": "A single-file Arabic RTL mobile UI showcase for صديقك, a study companion app for Iraqi high-school students, presenting twelve phone screens with four switchable color themes.",
+  "features": [
+    "Twelve mobile screens in labeled 390x844 phone frames",
+    "Onboarding, home, booklets store, booklet detail, and reader",
+    "Exam setup, exam question, and exam result screens",
+    "Login, logout confirmation, account, and settings screens",
+    "Four switchable color themes: mint, ocean, lavender, and dark",
+    "Original صديقك logo and CSS/SVG book covers",
+    "Inline outline SVG icons with no external images"
+  ],
+  "category": "design-showcase",
+  "tags": [
+    "arabic",
+    "rtl",
+    "mobile-ui",
+    "design-system",
+    "education",
+    "html-css"
+  ],
+  "last_updated": "2026-09-24T01:33:51.161Z"
+}

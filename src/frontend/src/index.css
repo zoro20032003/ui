@@ -1,0 +1,268 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------------------
+   صديقك (Sadiqak) — fonts
+   Readex Pro (headings) + IBM Plex Sans Arabic (body) are Google Fonts and are
+   linked from the standalone HTML artifact's <head>. Declared here as
+   @font-face fallbacks so the token system is self-describing.
+--------------------------------------------------------------------------- */
+@font-face {
+  font-family: "Readex Pro";
+  src: local("Readex Pro");
+  font-display: swap;
+  font-weight: 200 700;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  src: local("IBM Plex Sans Arabic");
+  font-display: swap;
+  font-weight: 100 700;
+}
+
+/* ---------------------------------------------------------------------------
+   صديقك (Sadiqak) — design tokens
+   Mint is the default theme (:root). Ocean / Lavender / Dark override the same
+   token names via [data-theme="..."] on <html>.
+   The required mint values are exact hex; the other themes are derived to
+   match in lightness, chroma feel, and contrast.
+--------------------------------------------------------------------------- */
+
+@layer base {
+  :root,
+  [data-theme="mint"] {
+    --font-display: "Readex Pro", "IBM Plex Sans Arabic", sans-serif;
+    --font-body: "IBM Plex Sans Arabic", "Readex Pro", sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+
+    /* --- required mint palette (exact) --- */
+    --primary: #26a69a;
+    --primary-dark: #1e8c82;
+    --background: #eaf7f4;
+    --surface: #ffffff;
+    --text: #1f2a2e;
+    --muted: #6b7c80;
+    --line: #e3ecea;
+    --accent: #f5a623;
+
+    /* --- derived helpers --- */
+    --primary-soft: #d8f0ec;
+    --primary-foreground: #ffffff;
+    --accent-soft: #fdf1dc;
+    --success: #2e9e6b;
+    --success-soft: #e2f5ec;
+    --danger: #d9534f;
+    --danger-soft: #fbe9e8;
+    --info: #3b82b8;
+    --info-soft: #e6f0f8;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+    /* --- radius scale --- */
+    --radius-xs: 12px;
+    --radius-sm: 16px;
+    --radius-md: 20px;
+    --radius-lg: 24px;
+    --radius-full: 999px;
+    --radius: 20px;
+
+    /* --- spacing scale (4px base) --- */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-8: 32px;
+
+    --tap-min: 44px;
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* --- semantic aliases (shadcn-compatible names) --- */
+    --foreground: var(--text);
+    --card: var(--surface);
+    --card-foreground: var(--text);
+    --popover: var(--surface);
+    --popover-foreground: var(--text);
+    --secondary: var(--primary-soft);
+    --secondary-foreground: var(--primary-dark);
+    --muted-foreground: var(--muted);
+    --accent-foreground: #6a4400;
+    --destructive: var(--danger);
+    --destructive-foreground: #ffffff;
+    --warning: var(--accent);
+    --border: var(--line);
+    --input: var(--line);
+    --ring: var(--primary);
+  }
+
+  [data-theme="ocean"] {
+    --primary: #2e7db8;
+    --primary-dark: #24648f;
+    --background: #eaf2f9;
+    --surface: #ffffff;
+    --text: #1c2a33;
+    --muted: #64757f;
+    --line: #e0eaf1;
+    --accent: #f5a623;
+
+    --primary-soft: #d9e9f6;
+    --primary-foreground: #ffffff;
+    --accent-soft: #fdf1dc;
+    --success: #2e9e6b;
+    --success-soft: #e2f5ec;
+    --danger: #d9534f;
+    --danger-soft: #fbe9e8;
+    --info: #2e7db8;
+    --info-soft: #e6f0f8;
+    --accent-foreground: #6a4400;
+    --secondary-foreground: #24648f;
+  }
+
+  [data-theme="lavender"] {
+    --primary: #7c6bd6;
+    --primary-dark: #6353b8;
+    --background: #f1eefa;
+    --surface: #ffffff;
+    --text: #241f33;
+    --muted: #6e6880;
+    --line: #e8e3f3;
+    --accent: #f5a623;
+
+    --primary-soft: #e6e1f8;
+    --primary-foreground: #ffffff;
+    --accent-soft: #fdf1dc;
+    --success: #2e9e6b;
+    --success-soft: #e2f5ec;
+    --danger: #d9534f;
+    --danger-soft: #fbe9e8;
+    --info: #3b82b8;
+    --info-soft: #e6f0f8;
+    --accent-foreground: #6a4400;
+    --secondary-foreground: #6353b8;
+  }
+
+  [data-theme="dark"] {
+    --primary: #2bb3a6;
+    --primary-dark: #57c9bd;
+    --background: #111a1c;
+    --surface: #1a2527;
+    --text: #e8f1ef;
+    --muted: #8fa0a2;
+    --line: #2a383a;
+    --accent: #f5a623;
+
+    --primary-soft: #1f3a3a;
+    --primary-foreground: #0e1618;
+    --accent-soft: #3a2f1a;
+    --success: #4cc38a;
+    --success-soft: #1c3a2e;
+    --danger: #e5736f;
+    --danger-soft: #3a2322;
+    --info: #6aa9d8;
+    --info-soft: #1c2f3d;
+    --accent-foreground: #f5d9a6;
+    --secondary-foreground: #7fd6cb;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.4);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   @theme — Tailwind v4 style token map (raw OKLCH L C H values)
+   Only used when the CSS is consumed by a Tailwind v4 pipeline; the standalone
+   HTML artifact consumes the hex custom properties above directly.
+--------------------------------------------------------------------------- */
+@theme {
+  --color-background: 0.955 0.019 176;
+  --color-foreground: 0.245 0.014 205;
+  --color-card: 1 0 0;
+  --color-card-foreground: 0.245 0.014 205;
+  --color-popover: 1 0 0;
+  --color-popover-foreground: 0.245 0.014 205;
+
+  --color-primary: 0.665 0.108 177;
+  --color-primary-foreground: 1 0 0;
+  --color-primary-dark: 0.585 0.096 177;
+  --color-primary-soft: 0.925 0.045 177;
+
+  --color-secondary: 0.925 0.045 177;
+  --color-secondary-foreground: 0.585 0.096 177;
+  --color-muted: 0.955 0.019 176;
+  --color-muted-foreground: 0.565 0.018 200;
+
+  --color-accent: 0.755 0.148 66;
+  --color-accent-foreground: 0.42 0.1 66;
+
+  --color-success: 0.625 0.118 160;
+  --color-warning: 0.755 0.148 66;
+  --color-destructive: 0.585 0.164 25;
+  --color-destructive-foreground: 1 0 0;
+
+  --color-border: 0.925 0.012 178;
+  --color-input: 0.925 0.012 178;
+  --color-ring: 0.665 0.108 177;
+
+  --radius-xs: 12px;
+  --radius-sm: 16px;
+  --radius-md: 20px;
+  --radius-lg: 24px;
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .tap-target {
+    min-width: var(--tap-min);
+    min-height: var(--tap-min);
+  }
+
+  .animate-rise {
+    animation: rise 0.4s ease-out both;
+  }
+
+  .animate-wave-drift {
+    animation: wave-drift 6s ease-in-out infinite;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes wave-drift {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-8px);
+  }
+}

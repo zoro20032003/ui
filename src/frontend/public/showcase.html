@@ -1,0 +1,3044 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="mint">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>صديقك — عرض شاشات التطبيق</title>
+<meta name="description" content="عرض شاشات تطبيق صديقك — رفيق دراسة الكيمياء للسادس العلمي" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   صديقك — Showcase stylesheet
+   Single self-contained file. No JS. No external images.
+   ============================================================ */
+
+/* ---------- Theme tokens ---------- */
+:root,
+[data-theme="mint"] {
+  --primary: #26A69A;
+  --primary-dark: #1E8C82;
+  --background: #EAF7F4;
+  --surface: #FFFFFF;
+  --text: #1F2A2E;
+  --muted: #6B7C80;
+  --line: #E3ECEA;
+  --accent: #F5A623;
+  --primary-soft: rgba(38, 166, 154, 0.12);
+  --primary-softer: rgba(38, 166, 154, 0.06);
+  --accent-soft: rgba(245, 166, 35, 0.14);
+  --danger: #D9534F;
+  --danger-soft: rgba(217, 83, 79, 0.12);
+  --success: #2E9E6B;
+  --success-soft: rgba(46, 158, 107, 0.12);
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --radius-card: 20px;
+  --radius-sheet: 24px;
+  --radius-input: 16px;
+  --radius-pill: 999px;
+  --radius-badge: 12px;
+  color-scheme: light;
+}
+
+[data-theme="ocean"] {
+  --primary: #2E7DB8;
+  --primary-dark: #24648F;
+  --background: #EAF2F9;
+  --surface: #FFFFFF;
+  --text: #1C2A33;
+  --muted: #64757F;
+  --line: #E0EAF1;
+  --accent: #F5A623;
+  --primary-soft: rgba(46, 125, 184, 0.12);
+  --primary-softer: rgba(46, 125, 184, 0.06);
+  --accent-soft: rgba(245, 166, 35, 0.14);
+  --danger: #D9534F;
+  --danger-soft: rgba(217, 83, 79, 0.12);
+  --success: #2E9E6B;
+  --success-soft: rgba(46, 158, 107, 0.12);
+  color-scheme: light;
+}
+
+[data-theme="lavender"] {
+  --primary: #7C6BD6;
+  --primary-dark: #6353B8;
+  --background: #F1EEFA;
+  --surface: #FFFFFF;
+  --text: #241F33;
+  --muted: #6E6880;
+  --line: #E8E3F3;
+  --accent: #F5A623;
+  --primary-soft: rgba(124, 107, 214, 0.12);
+  --primary-softer: rgba(124, 107, 214, 0.06);
+  --accent-soft: rgba(245, 166, 35, 0.14);
+  --danger: #D9534F;
+  --danger-soft: rgba(217, 83, 79, 0.12);
+  --success: #2E9E6B;
+  --success-soft: rgba(46, 158, 107, 0.12);
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --primary: #2BB3A6;
+  --primary-dark: #57C9BD;
+  --background: #111A1C;
+  --surface: #1A2527;
+  --text: #E8F1EF;
+  --muted: #8FA0A2;
+  --line: #2A383A;
+  --accent: #F5A623;
+  --primary-soft: rgba(43, 179, 166, 0.18);
+  --primary-softer: rgba(43, 179, 166, 0.09);
+  --accent-soft: rgba(245, 166, 35, 0.18);
+  --danger: #E07A76;
+  --danger-soft: rgba(224, 122, 118, 0.16);
+  --success: #4FBF8B;
+  --success-soft: rgba(79, 191, 139, 0.16);
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  color-scheme: dark;
+}
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: "IBM Plex Sans Arabic", system-ui, sans-serif;
+  background: #0F1B1D;
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Readex Pro", "IBM Plex Sans Arabic", sans-serif;
+  margin: 0;
+  line-height: 1.35;
+}
+
+p { margin: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+button { font: inherit; color: inherit; }
+a { color: inherit; text-decoration: none; }
+
+/* ---------- Showcase page chrome ---------- */
+.page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 56px 24px 96px;
+}
+
+.page-head {
+  text-align: center;
+  color: #E8F1EF;
+  margin-bottom: 56px;
+}
+
+.page-head .brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.page-head .brand-lockup .wordmark {
+  font-family: "Readex Pro", sans-serif;
+  font-weight: 600;
+  font-size: 26px;
+  color: #E8F1EF;
+}
+
+.page-head h1 {
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.page-head p {
+  margin-top: 12px;
+  font-size: 16px;
+  color: #9DB3B1;
+  max-width: 560px;
+  margin-inline: auto;
+}
+
+.page-head .meta-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.page-head .meta-chips span {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid #2A383A;
+  color: #9DB3B1;
+}
+
+/* ---------- Screen grid ---------- */
+.screens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 48px 40px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.screen-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.screen-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Readex Pro", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #C9DAD8;
+}
+
+.screen-label .num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-pill);
+  background: #1A2527;
+  border: 1px solid #2A383A;
+  font-size: 12px;
+  color: #7FA09D;
+}
+
+/* ---------- Phone frame ---------- */
+.phone {
+  width: 390px;
+  height: 844px;
+  background: var(--background);
+  border-radius: 40px;
+  border: 8px solid #0A1213;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+}
+
+.phone::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 108px;
+  height: 22px;
+  border-radius: var(--radius-pill);
+  background: #0A1213;
+  z-index: 40;
+}
+
+/* status bar */
+.statusbar {
+  flex: 0 0 auto;
+  height: 44px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  position: relative;
+  z-index: 30;
+}
+
+.statusbar .sb-icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text);
+}
+
+/* scrollable body */
+.screen-body {
+  flex: 1 1 auto;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.scroll {
+  flex: 1 1 auto;
+  overflow: hidden;
+  padding: 0 20px 24px;
+  min-height: 0;
+}
+
+/* wave motif */
+.wave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 190px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.wave svg { display: block; width: 100%; height: 100%; }
+
+.wave .w1 { animation: drift 6s ease-in-out infinite; }
+.wave .w2 { animation: drift 6s ease-in-out infinite reverse; }
+
+@keyframes drift {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-14px); }
+}
+
+/* ---------- Shared primitives ---------- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow);
+  padding: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.card-lg { padding: 20px; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 20px;
+  border-radius: var(--radius-input);
+  border: 1px solid transparent;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 140ms ease, opacity 140ms ease;
+  white-space: nowrap;
+}
+
+.btn:active { transform: scale(0.97); }
+
+/* ---------- Hover & focus states ---------- */
+.btn:hover { opacity: 0.92; }
+.btn-outline:hover { border-color: var(--primary); color: var(--primary-dark); }
+[data-theme="dark"] .btn-outline:hover { color: var(--primary); }
+.btn-ghost:hover { background: var(--primary-soft); }
+.btn-danger:hover { opacity: 0.92; }
+
+.icon-btn:hover { border-color: var(--primary); color: var(--primary-dark); }
+.icon-btn.plain:hover { background: var(--primary-soft); color: var(--primary-dark); }
+[data-theme="dark"] .icon-btn:hover,
+[data-theme="dark"] .icon-btn.plain:hover { color: var(--primary); }
+
+.chip:hover { border-color: var(--primary); color: var(--primary-dark); }
+[data-theme="dark"] .chip:hover { color: var(--primary); }
+
+.nav-item:hover { color: var(--primary); }
+
+.tool:hover { color: var(--primary); background: var(--primary-soft); }
+
+.round-next:hover { opacity: 0.92; }
+
+.stepper .st-btn:hover { border-color: var(--primary); background: var(--primary-soft); }
+
+.row-item:hover { background: var(--primary-softer); }
+.row-item.danger:hover { background: var(--danger-soft); }
+
+.theme-swatch:hover .ts-dot { border-color: var(--primary); }
+
+.swatch:hover { border-color: var(--primary); }
+
+.font-sizes .fs:hover { border-color: var(--primary); }
+
+.booklet-card:hover,
+.booklet-mini:hover,
+.chapter-row:hover,
+.part-row:hover { border-color: var(--primary); }
+
+.search:hover { border-color: var(--primary); }
+
+.forgot:hover,
+.signup-line b:hover,
+.section-head .more:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+.skip:hover { color: var(--primary); }
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #FFFFFF;
+}
+
+[data-theme="dark"] .btn-primary { color: #0B1416; }
+
+.btn-outline {
+  background: var(--surface);
+  border-color: var(--line);
+  color: var(--text);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--primary);
+  padding: 0 12px;
+}
+
+.btn-block { width: 100%; }
+.btn-sm { min-height: 44px; font-size: 14px; padding: 0 16px; }
+
+.icon-btn {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: transform 140ms ease;
+}
+
+.icon-btn:active { transform: scale(0.94); }
+.icon-btn.plain { border-color: transparent; background: transparent; }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.chip.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #FFFFFF;
+}
+
+[data-theme="dark"] .chip.active { color: #0B1416; }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: var(--radius-badge);
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.badge-soft {
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+}
+
+[data-theme="dark"] .badge-soft { color: var(--primary); }
+
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.section-head h3 {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.section-head .more {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.muted { color: var(--muted); }
+.caption { font-size: 13px; }
+.small { font-size: 12px; }
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Readex Pro", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  flex: 0 0 auto;
+}
+
+[data-theme="dark"] .avatar { color: var(--primary); }
+
+.avatar-lg { width: 72px; height: 72px; font-size: 26px; }
+
+/* progress */
+.progress {
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--line);
+  overflow: hidden;
+}
+
+.progress > span {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--primary);
+}
+
+/* search field */
+.search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 16px;
+  border-radius: var(--radius-input);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  color: var(--muted);
+  font-size: 14px;
+  position: relative;
+  z-index: 1;
+}
+
+.search svg { flex: 0 0 auto; color: var(--muted); }
+
+/* bottom nav */
+.bottom-nav {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  padding: 6px 8px 10px;
+  position: relative;
+  z-index: 20;
+}
+
+.nav-item {
+  flex: 1 1 0;
+  min-height: 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  border-radius: var(--radius-input);
+  transition: transform 140ms ease;
+}
+
+.nav-item.active { color: var(--primary); }
+.nav-item:active { transform: scale(0.95); }
+
+/* top bar */
+.topbar {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 20px 12px;
+  position: relative;
+  z-index: 10;
+}
+
+.topbar h2 {
+  font-size: 18px;
+  font-weight: 600;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* ---------- Logo ---------- */
+.logo-mark { display: block; flex: 0 0 auto; }
+
+.logo-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-lockup .wordmark {
+  font-family: "Readex Pro", sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  color: var(--text);
+  position: relative;
+}
+
+.logo-lockup .wordmark .dot {
+  position: absolute;
+  top: 2px;
+  left: -2px;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+}
+
+/* ---------- Onboarding ---------- */
+.onboard {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 24px 28px;
+  position: relative;
+  min-height: 0;
+}
+
+.onboard .skip {
+  align-self: flex-start;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 4px;
+}
+
+.onboard .ob-brand {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4px;
+  position: relative;
+  z-index: 2;
+}
+
+.onboard .ob-brand .logo-lockup { gap: 8px; }
+.onboard .ob-brand .wordmark { font-size: 18px; }
+.onboard .ob-brand .wordmark .dot { width: 6px; height: 6px; top: 1px; }
+
+.onboard .art {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 0;
+}
+
+.onboard .art svg { width: 100%; max-width: 300px; height: auto; }
+
+.onboard .copy { text-align: center; position: relative; z-index: 2; }
+
+.onboard .copy h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 10px;
+}
+
+[data-theme="dark"] .onboard .copy h2 { color: var(--primary); }
+
+.onboard .copy p {
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 300px;
+  margin-inline: auto;
+}
+
+.onboard .foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 28px;
+  position: relative;
+  z-index: 2;
+}
+
+.dots { display: flex; gap: 6px; }
+
+.dots i {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--line);
+  display: block;
+}
+
+.dots i.on { width: 22px; background: var(--primary); }
+
+.round-next {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-pill);
+  background: var(--primary);
+  color: #FFFFFF;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: transform 140ms ease;
+}
+
+[data-theme="dark"] .round-next { color: #0B1416; }
+.round-next:active { transform: scale(0.94); }
+
+/* ---------- Home ---------- */
+.home-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 20px 16px;
+  position: relative;
+  z-index: 10;
+}
+
+.home-head .greet { flex: 1 1 auto; min-width: 0; }
+
+.home-head .greet .hi {
+  font-family: "Readex Pro", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.home-head .greet .sub {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.announce {
+  background: var(--primary);
+  border: none;
+  color: #FFFFFF;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .announce { color: #0B1416; }
+
+.announce .a-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.9;
+  margin-bottom: 8px;
+}
+
+.announce h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.announce .btn {
+  background: #FFFFFF;
+  color: var(--primary-dark);
+  min-height: 40px;
+  font-size: 14px;
+}
+
+[data-theme="dark"] .announce .btn { background: #0B1416; color: var(--primary); }
+
+.announce .a-wave {
+  position: absolute;
+  inset-inline-start: -20px;
+  bottom: -30px;
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+.book-card { display: flex; gap: 14px; align-items: center; }
+
+.cover {
+  width: 64px;
+  height: 88px;
+  border-radius: 10px;
+  background: linear-gradient(150deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  flex: 0 0 auto;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.cover::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.cover .c-title {
+  font-family: "Readex Pro", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  text-align: center;
+  padding: 0 6px;
+  line-height: 1.3;
+}
+
+.cover .c-rule {
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.cover-lg { width: 116px; height: 158px; border-radius: 14px; }
+.cover-lg .c-title { font-size: 15px; }
+.cover-lg .c-rule { width: 34px; }
+
+.book-card .b-body { flex: 1 1 auto; min-width: 0; }
+
+.book-card .b-body h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.book-card .b-body .prog-line {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 10px 0 6px;
+}
+
+.book-card .b-body .btn { margin-top: 12px; }
+
+/* horizontal booklets */
+.hscroll {
+  display: flex;
+  gap: 12px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  padding-bottom: 4px;
+}
+
+.booklet-mini {
+  flex: 0 0 132px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.booklet-mini .bm-cover {
+  height: 96px;
+  border-radius: 12px;
+  background: linear-gradient(150deg, var(--primary) 0%, var(--primary-dark) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+}
+
+.booklet-mini .bm-cover::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.booklet-mini h4 {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.booklet-mini .t { font-size: 11px; color: var(--muted); }
+
+/* chapters */
+.chapter-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow);
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.chapter-row .idx {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-badge);
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Readex Pro", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  flex: 0 0 auto;
+}
+
+[data-theme="dark"] .chapter-row .idx { color: var(--primary); }
+
+.chapter-row .c-body { flex: 1 1 auto; min-width: 0; }
+.chapter-row .c-body h4 { font-size: 15px; font-weight: 600; }
+.chapter-row .c-body .r { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.chapter-row .chev { color: var(--muted); flex: 0 0 auto; }
+
+/* news */
+.news-card { display: flex; gap: 12px; align-items: flex-start; }
+
+.news-thumb {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-badge);
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+[data-theme="dark"] .news-thumb { color: var(--primary); }
+
+.news-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.news-card p { font-size: 12px; color: var(--muted); }
+
+/* ---------- Booklets store ---------- */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.booklet-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+
+.booklet-card .bc-cover {
+  height: 118px;
+  border-radius: 12px;
+  background: linear-gradient(150deg, var(--primary) 0%, var(--primary-dark) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+}
+
+.booklet-card .bc-cover::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.booklet-card h4 { font-size: 14px; font-weight: 600; line-height: 1.4; }
+.booklet-card .t { font-size: 12px; color: var(--muted); }
+.booklet-card .p { font-size: 11px; color: var(--muted); }
+
+.booklet-card .mine {
+  position: absolute;
+  top: 10px;
+  inset-inline-start: 10px;
+  z-index: 2;
+}
+
+.chips-row {
+  display: flex;
+  gap: 8px;
+  overflow: hidden;
+  padding: 2px 0 4px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- Booklet detail ---------- */
+.detail-hero {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.detail-hero .d-body { flex: 1 1 auto; min-width: 0; }
+.detail-hero h2 { font-size: 19px; font-weight: 700; margin-bottom: 6px; }
+.detail-hero .teacher { font-size: 13px; color: var(--muted); }
+
+.stats-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow);
+  padding: 14px 8px;
+  margin-top: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.stats-row .st { text-align: center; flex: 1 1 0; }
+.stats-row .st .v {
+  font-family: "Readex Pro", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+}
+.stats-row .st .k { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.stats-row .sep { width: 1px; height: 30px; background: var(--line); }
+
+.parts-list { position: relative; z-index: 1; }
+
+.part-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow);
+  margin-bottom: 10px;
+}
+
+.part-row .p-body { flex: 1 1 auto; min-width: 0; }
+.part-row .p-body h4 { font-size: 15px; font-weight: 600; }
+.part-row .p-body .r { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+.sticky-bar {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 10px;
+  padding: 12px 20px 16px;
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  position: relative;
+  z-index: 20;
+}
+
+.sticky-bar .btn { flex: 1 1 0; }
+
+/* ---------- Reader ---------- */
+.segmented {
+  display: flex;
+  background: var(--line);
+  border-radius: var(--radius-pill);
+  padding: 3px;
+  gap: 3px;
+}
+
+.segmented span {
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.segmented span.on {
+  background: var(--surface);
+  color: var(--primary);
+  box-shadow: var(--shadow);
+}
+
+.reader-page {
+  flex: 1 1 auto;
+  margin: 0 20px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow);
+  padding: 24px 20px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.reader-page .rp-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.reader-page h3 {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--primary-dark);
+}
+
+[data-theme="dark"] .reader-page h3 { color: var(--primary); }
+
+.reader-page p {
+  font-size: 14px;
+  color: var(--text);
+  margin-bottom: 12px;
+  line-height: 1.9;
+}
+
+.reader-page .hl {
+  background: var(--accent-soft);
+  border-radius: 4px;
+  padding: 0 3px;
+}
+
+.reader-page .uline {
+  border-bottom: 2px solid var(--primary-soft);
+  padding-bottom: 1px;
+}
+
+.reader-toolbar {
+  flex: 0 0 auto;
+  margin: 12px 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow);
+  padding: 6px 10px;
+  position: relative;
+  z-index: 20;
+}
+
+.tool {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  border-radius: var(--radius-pill);
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 600;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: transform 140ms ease;
+}
+
+.tool:active { transform: scale(0.92); }
+.tool.on { color: var(--primary); background: var(--primary-soft); }
+
+.sheet {
+  flex: 0 0 auto;
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  border-radius: var(--radius-sheet) var(--radius-sheet) 0 0;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.06);
+  padding: 12px 20px 20px;
+  position: relative;
+  z-index: 25;
+}
+
+.sheet .grab {
+  width: 40px;
+  height: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--line);
+  margin: 0 auto 14px;
+}
+
+.sheet h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.sheet .row-label {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 14px 0 8px;
+}
+
+.font-sizes { display: flex; gap: 8px; align-items: flex-end; }
+
+.font-sizes .fs {
+  flex: 1 1 0;
+  min-height: 44px;
+  border-radius: var(--radius-input);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Readex Pro", sans-serif;
+  font-weight: 600;
+}
+
+.font-sizes .fs.on {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+}
+
+[data-theme="dark"] .font-sizes .fs.on { color: var(--primary); }
+
+.swatch-row { display: flex; gap: 10px; }
+
+.swatch {
+  flex: 1 1 0;
+  min-height: 44px;
+  border-radius: var(--radius-input);
+  border: 1px solid var(--line);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--surface);
+}
+
+.swatch .dotc {
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line);
+}
+
+.swatch.on { border-color: var(--primary); color: var(--primary-dark); }
+[data-theme="dark"] .swatch.on { color: var(--primary); }
+
+.brightness {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.brightness .track {
+  flex: 1 1 auto;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--line);
+  position: relative;
+}
+
+.brightness .track > span {
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0;
+  bottom: 0;
+  width: 62%;
+  border-radius: var(--radius-pill);
+  background: var(--primary);
+}
+
+.brightness .knob {
+  position: absolute;
+  top: 50%;
+  inset-inline-start: 62%;
+  transform: translate(50%, -50%);
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  border: 2px solid var(--primary);
+}
+
+/* ---------- Exams ---------- */
+.exam-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  position: relative;
+  z-index: 1;
+}
+
+.exam-card .ec-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.exam-card .ec-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-badge);
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+[data-theme="dark"] .exam-card .ec-icon { color: var(--primary); }
+
+.exam-card h3 { font-size: 16px; font-weight: 600; }
+.exam-card .ec-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+.stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-input);
+  padding: 6px;
+  position: relative;
+  z-index: 1;
+}
+
+.stepper .st-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-badge);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 140ms ease;
+}
+
+.stepper .st-btn:active { transform: scale(0.92); }
+
+.stepper .st-val {
+  font-family: "Readex Pro", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.stepper .st-val small { font-size: 12px; color: var(--muted); font-family: "IBM Plex Sans Arabic", sans-serif; }
+
+/* exam question */
+.q-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.q-progress .qp-text { font-size: 12px; font-weight: 600; color: var(--muted); white-space: nowrap; }
+.q-progress .progress { flex: 1 1 auto; }
+
+.q-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow);
+  padding: 20px;
+  margin-top: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.q-card .q-tag { font-size: 11px; font-weight: 600; color: var(--primary); margin-bottom: 8px; }
+.q-card h3 { font-size: 18px; font-weight: 600; line-height: 1.5; }
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 12px 16px;
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-input);
+  box-shadow: var(--shadow);
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.option .mark {
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--line);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  flex: 0 0 auto;
+}
+
+.option .o-text { flex: 1 1 auto; font-size: 15px; font-weight: 500; }
+
+.option.correct { border-color: var(--success); background: var(--success-soft); }
+.option.correct .mark { border-color: var(--success); background: var(--success); color: #FFFFFF; }
+.option.correct .o-text { color: var(--success); font-weight: 600; }
+
+.option.wrong { border-color: var(--danger); background: var(--danger-soft); }
+.option.wrong .mark { border-color: var(--danger); background: var(--danger); color: #FFFFFF; }
+.option.wrong .o-text { color: var(--danger); font-weight: 600; }
+
+.option.selected { border-color: var(--primary); background: var(--primary-softer); }
+.option.selected .mark { border-color: var(--primary); color: var(--primary); }
+
+.feedback {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-radius: var(--radius-input);
+  background: var(--success-soft);
+  color: var(--success);
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+/* exam result */
+.score-ring {
+  width: 168px;
+  height: 168px;
+  margin: 8px auto 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.score-ring svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+
+.score-ring .sr-inner { text-align: center; position: relative; z-index: 1; }
+
+.score-ring .sr-inner .n {
+  font-family: "Readex Pro", sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--primary-dark);
+  line-height: 1;
+}
+
+[data-theme="dark"] .score-ring .sr-inner .n { color: var(--primary); }
+
+.score-ring .sr-inner .d { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+.topic-bar { margin-bottom: 14px; position: relative; z-index: 1; }
+
+.topic-bar .tb-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.topic-bar .tb-head .v { font-weight: 600; color: var(--primary-dark); }
+[data-theme="dark"] .topic-bar .tb-head .v { color: var(--primary); }
+
+/* ---------- Login ---------- */
+.login-wrap {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 24px 28px;
+  position: relative;
+  min-height: 0;
+}
+
+.login-wrap .brand { text-align: center; margin-bottom: 28px; position: relative; z-index: 2; }
+.login-wrap .brand .logo-lockup { justify-content: center; }
+.login-wrap .brand p { font-size: 13px; color: var(--muted); margin-top: 8px; }
+
+.login-wrap h2 {
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 6px;
+  position: relative;
+  z-index: 2;
+}
+
+.login-wrap .lead {
+  font-size: 14px;
+  color: var(--muted);
+  text-align: center;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.field { margin-bottom: 14px; position: relative; z-index: 2; }
+
+.field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.field .input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 16px;
+  border-radius: var(--radius-input);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.field .input svg { flex: 0 0 auto; }
+
+.forgot {
+  display: block;
+  text-align: end;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+  margin: -4px 0 18px;
+  position: relative;
+  z-index: 2;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+  color: var(--muted);
+  font-size: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1 1 auto;
+  height: 1px;
+  background: var(--line);
+}
+
+.signup-line {
+  text-align: center;
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.signup-line b { color: var(--primary); font-weight: 600; }
+
+/* ---------- Logout sheet ---------- */
+.overlay {
+  flex: 1 1 auto;
+  background: rgba(17, 26, 28, 0.42);
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  min-height: 0;
+}
+
+.confirm-sheet {
+  width: 100%;
+  background: var(--surface);
+  border-radius: var(--radius-sheet) var(--radius-sheet) 0 0;
+  padding: 24px 20px 24px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.confirm-sheet .cs-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-pill);
+  background: var(--danger-soft);
+  color: var(--danger);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.confirm-sheet h3 { font-size: 19px; font-weight: 700; margin-bottom: 8px; }
+.confirm-sheet p { font-size: 14px; color: var(--muted); margin-bottom: 22px; }
+.confirm-sheet .cs-actions { display: flex; flex-direction: column; gap: 10px; }
+
+.btn-danger { background: var(--danger); color: #FFFFFF; }
+
+/* ---------- Account ---------- */
+.profile-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+  z-index: 1;
+}
+
+.profile-head .p-body { flex: 1 1 auto; min-width: 0; }
+.profile-head h2 { font-size: 19px; font-weight: 700; }
+.profile-head .sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+.stat-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow);
+  padding: 14px 8px;
+  text-align: center;
+}
+
+.stat-card .v {
+  font-family: "Readex Pro", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
+[data-theme="dark"] .stat-card .v { color: var(--primary); }
+
+.stat-card .k { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+.rows {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.row-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.row-item:last-child { border-bottom: none; }
+
+.row-item .r-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-badge);
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+[data-theme="dark"] .row-item .r-icon { color: var(--primary); }
+
+.row-item .r-label { flex: 1 1 auto; font-size: 15px; font-weight: 500; }
+.row-item .chev { color: var(--muted); flex: 0 0 auto; }
+.row-item.danger .r-icon { background: var(--danger-soft); color: var(--danger); }
+.row-item.danger .r-label { color: var(--danger); font-weight: 600; }
+
+/* ---------- Settings ---------- */
+.toggle {
+  width: 50px;
+  height: 30px;
+  border-radius: var(--radius-pill);
+  background: var(--line);
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.toggle::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 44px;
+}
+
+.toggle::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  inset-inline-end: 3px;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  transition: transform 140ms ease;
+}
+
+.toggle.on { background: var(--primary); }
+.toggle.on::after { transform: translateX(-20px); }
+
+.theme-swatches { display: flex; gap: 10px; }
+
+.theme-swatch {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.theme-swatch .ts-dot {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--line);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-swatch.on .ts-dot { border-color: var(--primary); }
+.theme-swatch.on { color: var(--primary-dark); }
+[data-theme="dark"] .theme-swatch.on { color: var(--primary); }
+
+.ts-dot.mint { background: #26A69A; }
+.ts-dot.ocean { background: #2E7DB8; }
+.ts-dot.lavender { background: #7C6BD6; }
+.ts-dot.dark { background: #1A2527; }
+
+/* ---------- Footer ---------- */
+.page-foot {
+  text-align: center;
+  color: #7FA09D;
+  font-size: 13px;
+  margin-top: 72px;
+}
+
+.page-foot a { color: #9DB3B1; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+</style>
+</head>
+<body>
+<main class="page">
+
+  <header class="page-head">
+    <div class="brand-lockup">
+      <span class="logo-mark" aria-hidden="true">
+        <svg width="44" height="44" viewBox="0 0 48 48" fill="none">
+          <path d="M24 4C13 4 4 12.6 4 23.2c0 6.1 3 11.5 7.8 15l-1.6 6.4c-.3 1.2 1 2.2 2 1.5l7.2-4.6c1.5.3 3 .4 4.6.4 11 0 20-8.6 20-19.2S35 4 24 4Z" fill="var(--primary)"/>
+          <path d="M15 28c3.4-6.6 8.4-10.4 15-11.4" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+          <circle cx="17.5" cy="27.5" r="2.1" fill="#fff"/>
+          <circle cx="24" cy="22.5" r="2.1" fill="#fff"/>
+          <circle cx="30.5" cy="17.5" r="2.1" fill="var(--accent)"/>
+        </svg>
+      </span>
+      <span class="wordmark">صديقك</span>
+    </div>
+    <h1>عرض شاشات التطبيق</h1>
+    <p>رفيق دراسة الكيمياء للسادس العلمي — أربع عشرة شاشة بتصميم هادئ ومشجّع، بأربع لوحات ألوان.</p>
+    <div class="meta-chips">
+      <span>390 × 844</span>
+      <span>RTL عربي</span>
+      <span>4 لوحات ألوان</span>
+      <span>14 شاشة</span>
+    </div>
+  </header>
+
+  <div class="screens">
+
+    <!-- ============ 1. ONBOARDING ============ -->
+    <section class="screen-block">
+      <div class="screen-label"><span class="num">1</span> التهيئة — الشريحة الأولى</div>
+      <div class="phone">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="sb-icons">
+            <svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><rect x="0" y="7" width="3" height="5" rx="1" fill="currentColor"/><rect x="4.5" y="5" width="3" height="7" rx="1" fill="currentColor"/><rect x="9" y="2.5" width="3" height="9.5" rx="1" fill="currentColor"/><rect x="13.5" y="0" width="3" height="12" rx="1" fill="currentColor"/></svg>
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M8 10.5 1 4.2A9.6 9.6 0 0 1 15 4.2L8 10.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            <svg width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><rect x="0.5" y="0.5" width="19" height="11" rx="3" stroke="currentColor"/><rect x="2.5" y="2.5" width="13" height="7" rx="1.5" fill="currentColor"/><path d="M21.5 4v4a2.2 2.2 0 0 0 0-4Z" fill="currentColor"/></svg>
+          </span>
+        </div>
+        <div class="screen-body">
+          <div class="onboard">
+            <span class="skip">تخطي</span>
+            <div class="ob-brand">
+              <span class="logo-lockup">
+                <span class="logo-mark" aria-hidden="true">
+                  <svg width="30" height="30" viewBox="0 0 48 48" fill="none">
+                    <path d="M24 4C13 4 4 12.6 4 23.2c0 6.1 3 11.5 7.8 15l-1.6 6.4c-.3 1.2 1 2.2 2 1.5l7.2-4.6c1.5.3 3 .4 4.6.4 11 0 20-8.6 20-19.2S35 4 24 4Z" fill="var(--primary)"/>
+                    <path d="M15 28c3.4-6.6 8.4-10.4 15-11.4" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+                    <circle cx="17.5" cy="27.5" r="2.1" fill="#fff"/>
+                    <circle cx="24" cy="22.5" r="2.1" fill="#fff"/>
+                    <circle cx="30.5" cy="17.5" r="2.1" fill="var(--accent)"/>
+                  </svg>
+                </span>
+                <span class="wordmark">صديقك<span class="dot"></span></span>
+              </span>
+            </div>
+            <div class="art">
+              <svg viewBox="0 0 300 240" fill="none" aria-hidden="true">
+                <path d="M0 196c40-16 78 10 118 2s74-30 116-18 66 22 66 22v38H0v-44Z" fill="var(--primary-soft)"/>
+                <path d="M0 214c46-14 84 8 126 2s72-24 112-14 62 18 62 18v20H0v-26Z" fill="var(--primary)" opacity=".28"/>
+                <rect x="96" y="52" width="108" height="140" rx="14" fill="var(--surface)" stroke="var(--line)" stroke-width="2"/>
+                <rect x="112" y="72" width="76" height="8" rx="4" fill="var(--primary-soft)"/>
+                <rect x="112" y="90" width="58" height="8" rx="4" fill="var(--line)"/>
+                <rect x="112" y="108" width="68" height="8" rx="4" fill="var(--line)"/>
+                <rect x="112" y="126" width="44" height="8" rx="4" fill="var(--line)"/>
+                <circle cx="150" cy="164" r="16" fill="var(--primary)"/>
+                <path d="M143 164l5 5 9-10" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="228" cy="66" r="20" fill="var(--accent)" opacity=".9"/>
+                <path d="M220 66h16M228 58v16" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
+                <circle cx="66" cy="96" r="12" fill="var(--primary)" opacity=".35"/>
+                <circle cx="248" cy="150" r="8" fill="var(--primary)" opacity=".25"/>
+              </svg>
+            </div>
+            <div class="copy">
+              <h2>كتابك وملزمتك في مكان واحد</h2>
+              <p>رفيقك الهادئ في دراسة الكيمياء — كتابك وملازمك واختباراتك في مكان واحد.</p>
+            </div>
+            <div class="foot">
+              <div class="dots"><i class="on"></i><i></i><i></i></div>
+              <button class="round-next" type="button" aria-label="التالي">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 6l-6 6 6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 2. ONBOARDING 2 ============ -->
+    <section class="screen-block">
+      <div class="screen-label"><span class="num">2</span> التهيئة — الشريحة الثانية</div>
+      <div class="phone">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="sb-icons">
+            <svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><rect x="0" y="7" width="3" height="5" rx="1" fill="currentColor"/><rect x="4.5" y="5" width="3" height="7" rx="1" fill="currentColor"/><rect x="9" y="2.5" width="3" height="9.5" rx="1" fill="currentColor"/><rect x="13.5" y="0" width="3" height="12" rx="1" fill="currentColor"/></svg>
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M8 10.5 1 4.2A9.6 9.6 0 0 1 15 4.2L8 10.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            <svg width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><rect x="0.5" y="0.5" width="19" height="11" rx="3" stroke="currentColor"/><rect x="2.5" y="2.5" width="13" height="7" rx="1.5" fill="currentColor"/><path d="M21.5 4v4a2.2 2.2 0 0 0 0-4Z" fill="currentColor"/></svg>
+          </span>
+        </div>
+        <div class="screen-body">
+          <div class="onboard">
+            <span class="skip">تخطي</span>
+            <div class="ob-brand">
+              <span class="logo-lockup">
+                <span class="logo-mark" aria-hidden="true">
+                  <svg width="30" height="30" viewBox="0 0 48 48" fill="none">
+                    <path d="M24 4C13 4 4 12.6 4 23.2c0 6.1 3 11.5 7.8 15l-1.6 6.4c-.3 1.2 1 2.2 2 1.5l7.2-4.6c1.5.3 3 .4 4.6.4 11 0 20-8.6 20-19.2S35 4 24 4Z" fill="var(--primary)"/>
+                    <path d="M15 28c3.4-6.6 8.4-10.4 15-11.4" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+                    <circle cx="17.5" cy="27.5" r="2.1" fill="#fff"/>
+                    <circle cx="24" cy="22.5" r="2.1" fill="#fff"/>
+                    <circle cx="30.5" cy="17.5" r="2.1" fill="var(--accent)"/>
+                  </svg>
+                </span>
+                <span class="wordmark">صديقك<span class="dot"></span></span>
+              </span>
+            </div>
+            <div class="art">
+              <svg viewBox="0 0 300 240" fill="none" aria-hidden="true">
+                <path d="M0 196c40-16 78 10 118 2s74-30 116-18 66 22 66 22v38H0v-44Z" fill="var(--primary-soft)"/>
+                <path d="M0 214c46-14 84 8 126 2s72-24 112-14 62 18 62 18v20H0v-26Z" fill="var(--primary)" opacity=".28"/>
+                <rect x="70" y="70" width="76" height="104" rx="12" fill="var(--surface)" stroke="var(--line)" stroke-width="2"/>
+                <rect x="84" y="88" width="48" height="7" rx="3.5" fill="var(--primary-soft)"/>
+                <rect x="84" y="104" width="36" height="7" rx="3.5" fill="var(--line)"/>
+                <rect x="84" y="120" width="44" height="7" rx="3.5" fill="var(--line)"/>
+                <rect x="154" y="86" width="76" height="104" rx="12" fill="var(--surface)" stroke="var(--line)" stroke-width="2"/>
+                <rect x="168" y="104" width="48" height="7" rx="3.5" fill="var(--primary-soft)"/>
+                <rect x="168" y="120" width="36" height="7" rx="3.5" fill="var(--line)"/>
+                <rect x="168" y="136" width="44" height="7" rx="3.5" fill="var(--line)"/>
+                <circle cx="150" cy="52" r="22" fill="var(--primary)"/>
+                <path d="M141 52l6 6 12-13" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="246" cy="120" r="14" fill="var(--accent)" opacity=".85"/>
+                <circle cx="52" cy="150" r="9" fill="var(--primary)" opacity=".3"/>
+              </svg>
+            </div>
+            <div class="copy">
+              <h2>اختبر نفسك بأسئلة وزارية</h2>
+              <p>ملازم المدرّسين وملازم صديقك مرتّبة حسب الفصول، مع متابعة تلقائية لآخر صفحة قرأتها.</p>
+            </div>
+            <div class="foot">
+              <div class="dots"><i></i><i class="on"></i><i></i></div>
+              <button class="round-next" type="button" aria-label="التالي">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 6l-6 6 6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 3. ONBOARDING 3 ============ -->
+    <section class="screen-block">
+      <div class="screen-label"><span class="num">3</span> التهيئة — الشريحة الثالثة</div>
+      <div class="phone">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="sb-icons">
+            <svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><rect x="0" y="7" width="3" height="5" rx="1" fill="currentColor"/><rect x="4.5" y="5" width="3" height="7" rx="1" fill="currentColor"/><rect x="9" y="2.5" width="3" height="9.5" rx="1" fill="currentColor"/><rect x="13.5" y="0" width="3" height="12" rx="1" fill="currentColor"/></svg>
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M8 10.5 1 4.2A9.6 9.6 0 0 1 15 4.2L8 10.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            <svg width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><rect x="0.5" y="0.5" width="19" height="11" rx="3" stroke="currentColor"/><rect x="2.5" y="2.5" width="13" height="7" rx="1.5" fill="currentColor"/><path d="M21.5 4v4a2.2 2.2 0 0 0 0-4Z" fill="currentColor"/></svg>
+          </span>
+        </div>
+        <div class="screen-body">
+          <div class="onboard">
+            <span class="skip">تخطي</span>
+            <div class="ob-brand">
+              <span class="logo-lockup">
+                <span class="logo-mark" aria-hidden="true">
+                  <svg width="30" height="30" viewBox="0 0 48 48" fill="none">
+                    <path d="M24 4C13 4 4 12.6 4 23.2c0 6.1 3 11.5 7.8 15l-1.6 6.4c-.3 1.2 1 2.2 2 1.5l7.2-4.6c1.5.3 3 .4 4.6.4 11 0 20-8.6 20-19.2S35 4 24 4Z" fill="var(--primary)"/>
+                    <path d="M15 28c3.4-6.6 8.4-10.4 15-11.4" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+                    <circle cx="17.5" cy="27.5" r="2.1" fill="#fff"/>
+                    <circle cx="24" cy="22.5" r="2.1" fill="#fff"/>
+                    <circle cx="30.5" cy="17.5" r="2.1" fill="var(--accent)"/>
+                  </svg>
+                </span>
+                <span class="wordmark">صديقك<span class="dot"></span></span>
+              </span>
+            </div>
+            <div class="art">
+              <svg viewBox="0 0 300 240" fill="none" aria-hidden="true">
+                <path d="M0 196c40-16 78 10 118 2s74-30 116-18 66 22 66 22v38H0v-44Z" fill="var(--primary-soft)"/>
+                <path d="M0 214c46-14 84 8 126 2s72-24 112-14 62 18 62 18v20H0v-26Z" fill="var(--primary)" opacity=".28"/>
+                <rect x="86" y="46" width="128" height="150" rx="16" fill="var(--surface)" stroke="var(--line)" stroke-width="2"/>
+                <rect x="104" y="66" width="92" height="9" rx="4.5" fill="var(--primary-soft)"/>
+                <rect x="104" y="88" width="70" height="9" rx="4.5" fill="var(--line)"/>
+                <rect x="104" y="110" width="82" height="9" rx="4.5" fill="var(--line)"/>
+                <rect x="104" y="132" width="54" height="9" rx="4.5" fill="var(--line)"/>
+                <rect x="104" y="158" width="92" height="26" rx="13" fill="var(--primary)"/>
+                <path d="M138 171h24" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
+                <circle cx="236" cy="80" r="24" fill="var(--accent)" opacity=".9"/>
+                <path d="M236 68v24M224 80h24" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/>
+                <circle cx="58" cy="120" r="11" fill="var(--primary)" opacity=".3"/>
+              </svg>
+            </div>
+            <div class="copy">
+              <h2>تابع تقدمك يومًا بيوم</h2>
+              <p>اختبارات وزاريّة وتدريبيّة مع تصحيح فوري ومراجعة نقاط الضعف خطوة بخطوة.</p>
+            </div>
+            <div class="foot">
+              <div class="dots"><i></i><i></i><i class="on"></i></div>
+              <button class="round-next" type="button" aria-label="ابدأ الآن">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 6l-6 6 6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4. HOME ============ -->
+    <section class="screen-block">
+      <div class="screen-label"><span class="num">4</span> الرئيسية</div>
+      <div class="phone">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="sb-icons">
+            <svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><rect x="0" y="7" width="3" height="5" rx="1" fill="currentColor"/><rect x="4.5" y="5" width="3" height="7" rx="1" fill="currentColor"/><rect x="9" y="2.5" width="3" height="9.5" rx="1" fill="currentColor"/><rect x="13.5" y="0" width="3" height="12" rx="1" fill="currentColor"/></svg>
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M8 10.5 1 4.2A9.6 9.6 0 0 1 15 4.2L8 10.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            <svg width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><rect x="0.5" y="0.5" width="19" height="11" rx="3" stroke="currentColor"/><rect x="2.5" y="2.5" width="13" height="7" rx="1.5" fill="currentColor"/><path d="M21.5 4v4a2.2 2.2 0 0 0 0-4Z" fill="currentColor"/></svg>
+          </span>
+        </div>
+        <div class="screen-body">
+          <svg class="wave" viewBox="0 0 390 190" preserveAspectRatio="none" aria-hidden="true">
+            <path class="w1" d="M0 96c58-26 104 14 168 6s96-40 156-24 66 30 66 30v82H0V96Z" fill="var(--primary-soft)"/>
+            <path class="w2" d="M0 128c62-20 108 12 170 6s100-30 158-16 62 22 62 22v50H0v-62Z" fill="var(--primary)" opacity=".22"/>
+          </svg>
+
+          <div class="home-head">
+            <span class="avatar">ع</span>
+            <div class="greet">
+              <div class="hi">مرحبًا، علي</div>
+              <div class="sub"><span class="badge">طالب مجتهد</span></div>
+            </div>
+            <button class="icon-btn" type="button" aria-label="الإشعارات">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8Z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.7 20a2 2 0 0 1-3.4 0" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+
+          <div class="scroll">
+            <div class="search">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.75"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+              <span>ابحث في الكتاب والملازم</span>
+            </div>
+
+            <div class="card announce" style="margin-top:16px">
+              <svg class="a-wave" width="200" height="120" viewBox="0 0 200 120" fill="none" aria-hidden="true"><path d="M0 60c30-14 54 8 86 4s50-22 82-14 32 16 32 16v54H0V60Z" fill="#fff"/></svg>
+              <div class="a-top">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v18M3 12h18" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+                إعلان جديد
+              </div>
+              <h3>اختبار نهاية الفصل الأول جاهز</h3>
+              <button class="btn" type="button">ابدأ</button>
+            </div>
+
+            <div class="section-head">
+              <h3>كتابي</h3>
+            </div>
+            <div class="card">
+              <div class="book-card">
+                <div class="cover">
+                  <span class="c-title">الكيمياء</span>
+                  <span class="c-rule"></span>
+                  <span class="c-title" style="font-size:9px;opacity:.85">السادس العلمي</span>
+                </div>
+                <div class="b-body">
+                  <h4>الكيمياء — السادس العلمي</h4>
+                  <div class="caption muted">الجزء الأول</div>
+                  <div class="prog-line">وصلت إلى صفحة 52 من 288</div>
+                  <div class="progress"><span style="width:18%"></span></div>
+                  <button class="btn btn-primary btn-sm" type="button">تابع القراءة</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-head">
+              <h3>الملازم</h3>
+              <span class="more">عرض الكل</span>
+            </div>
+            <div class="hscroll">
+              <div class="booklet-mini">
+                <div class="bm-cover">
+                  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5V5.5Z" stroke="#fff" stroke-width="1.75" stroke-linejoin="round"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3H6.5A2.5 2.5 0 0 1 4 20.5Z" stroke="#fff" stroke-width="1.75" stroke-linejoin="round"/></svg>
+                </div>
+                <h4>ملزمة الكيمياء</h4>
+                <div class="t">الأستاذ أيوب أحمد</div>
+              </div>
+              <div class="booklet-mini">
+                <div class="bm-cover">
+                  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v18M3 12h18" stroke="#fff" stroke-width="1.75" stroke-linecap="round"/></svg>
+                </div>
+                <h4>ملزمة الاتزان</h4>
+                <div class="t">الأستاذة رنا سعد</div>
+              </div>
+            </div>
+
+            <div class="section-head">
+              <h3>الفصول</h3>
+            </div>
+            <div class="chapter-row">
+              <span class="idx">1</span>
+              <div class="c-body">
+                <h4>الثرموداينمك</h4>
+                <div class="r">الصفحات 1 – 96</div>
+              </div>
+              <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 6l-6 6 6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="chapter-row">
+              <span class="idx">2</span>
+              <div class="c-body">
+                <h4>الاتزان الكيميائي</h4>
+                <div class="r">الصفحات 97 – 192</div>
+              </div>
+              <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 6l-6 6 6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="chapter-row">
+              <span class="idx">3</span>
+              <div class="c-body">
+                <h4>الاتزان الأيوني</h4>
+                <div class="r">الصفحات 193 – 288</div>
+              </div>
+              <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 6l-6 6 6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+
+            <div class="section-head">
+              <h3>أخبار الدراسة</h3>
+            </div>
+            <div class="card news-card">
+              <span class="news-thumb">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5h13v14H6a2 2 0 0 1-2-2V5Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="M17 8h3v9a2 2 0 0 1-2 2h-1V8Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="M7 9h7M7 13h5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+              </span>
+              <div>
+                <h4>جدول الامتحانات الوزارية</h4>
+                <p>نُشر الجدول الرسمي لامتحانات السادس العلمي — راجعه وحدّد خطة مراجعتك.</p>
+              </div>
+            </div>
+          </div>
+
+          <nav class="bottom-nav">
+            <span class="nav-item active">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-9.5Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/></svg>
+              الرئيسية
+            </span>
+            <span class="nav-item">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5V5.5Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3H6.5A2.5 2.5 0 0 1 4 20.5Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/></svg>
+              الكتب
+            </span>
+            <span class="nav-item">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h9l4 4v14H6V3Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="M14 3v5h5" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="M9 13h6M9 17h4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+              الملازم
+            </span>
+            <span class="nav-item">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 4h6v3H9V4Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="M6 5h12v15H6V5Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              الاختبارات
+            </span>
+            <span class="nav-item">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.75"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+              حسابي
+            </span>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 5. BOOKLETS STORE ============ -->
+    <section class="screen-block">
+      <div class="screen-label"><span class="num">5</span> متجر الملازم</div>
+      <div class="phone">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="sb-icons">
+            <svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><rect x="0" y="7" width="3" height="5" rx="1" fill="currentColor"/><rect x="4.5" y="5" width="3" height="7" rx="1" fill="currentColor"/><rect x="9" y="2.5" width="3" height="9.5" rx="1" fill="currentColor"/><rect x="13.5" y="0" width="3" height="12" rx="1" fill="currentColor"/></svg>
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M8 10.5 1 4.2A9.6 9.6 0 0 1 15 4.2L8 10.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            <svg width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><rect x="0.5" y="0.5" width="19" height="11" rx="3" stroke="currentColor"/><rect x="2.5" y="2.5" width="13" height="7" rx="1.5" fill="currentColor"/><path d="M21.5 4v4a2.2 2.2 0 0 0 0-4Z" fill="currentColor"/></svg>
+          </span>
+        </div>
+        <div class="screen-body">
+          <svg class="wave" viewBox="0 0 390 190" preserveAspectRatio="none" aria-hidden="true">
+            <path class="w1" d="M0 96c58-26 104 14 168 6s96-40 156-24 66 30 66 30v82H0V96Z" fill="var(--primary-soft)"/>
+            <path class="w2" d="M0 128c62-20 108 12 170 6s100-30 158-16 62 22 62 22v50H0v-62Z" fill="var(--primary)" opacity=".22"/>
+          </svg>
+
+          <div class="topbar">
+            <button class="icon-btn plain" type="button" aria-label="رجوع">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <h2>الملازم</h2>
+            <button class="icon-btn plain" type="button" aria-label="تصفية">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+
+          <div class="scroll">
+            <div class="search">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.75"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+              <span>ابحث عن ملزمة أو مدرّس</span>
+            </div>
+
+            <div class="chips-row" style="margin-top:14px">
+              <span class="chip active">الكل</span>
+              <span class="chip">ملازم المدرّسين</span>
+              <span class="chip">ملازم صديقك</span>
+              <span class="chip">أقرؤها الآن</span>
+            </div>
+
+            <div class="grid-2" style="margin-top:14px">
+              <div class="booklet-card">
+                <span class="badge badge-soft mine">ملزمتي</span>
+                <div class="bc-cover">
+                  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5V5.5Z" stroke="#fff" stroke-width="1.75" stroke-linejoin="round"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3H6.5A2.5 2.5 0 0 1 4 20.5Z" stroke="#fff" stroke-width="1.75" stroke-linejoin="round"/></svg>
+                </div>
+                <h4>الكيمياء — السادس العلمي</h4>
+                <div class="t">الأستاذ أيوب أحمد</div>
+                <div class="p">222 صفحة</div>
+              </div>
+              <div class="booklet-card">
+                <div class="bc-cover">
+                  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v18M3 12h18" stroke="#fff" stroke-width="1.75" stroke-linecap="round"/></svg>
+                </div>
+                <h4>ملزمة الاتزان الكيميائي</h4>
+                <div class="t">الأستاذة رنا سعد</div>
+                <div class="p">148 صفحة</div>
+              </div>
+              <div class="booklet-card">
+                <div class="bc-cover">
+                  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v18M3 12h18" stroke="#fff" stroke-width="1.75" stroke-linecap="round"/></svg>
+                </div>
+                <h4>ملزمة الثرموداينمك</h4>
+                <div class="t">الأستاذ حيدر الموسوي</div>
+                <div class="p">96 صفحة</div>
+              </div>
+              <div class="booklet-card">
+                <div class="bc-cover">
+                  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v18M3 12h18" stroke="#fff" stroke-width="1.75" stroke-linecap="round"/></svg>
+                </div>
+                <h4>ملزمة الاتزان الأيوني</h4>
+                <div class="t">الأستاذ أيوب أحمد</div>
+                <div class="p">112 صفحة</div>
+              </div>
+            </div>
+          </div>
+
+          <nav class="bottom-nav">
+            <span class="nav-item">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-9.5Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/></svg>
+              الرئيسية
+            </span>
+            <span class="nav-item">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5V5.5Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3H6.5A2.5 2.5 0 0 1 4 20.5Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/></svg>
+              الكتب
+            </span>
+            <span class="nav-item active">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h9l4 4v14H6V3Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="M14 3v5h5" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="M9 13h6M9 17h4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+              الملازم
+            </span>
+            <span class="nav-item">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 4h6v3H9V4Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="M6 5h12v15H6V5Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              الاختبارات
+            </span>
+            <span class="nav-item">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.75"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+              حسابي
+            </span>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 6. BOOKLET DETAIL ============ -->
+    <section class="screen-block">
+      <div class="screen-label"><span class="num">6</span> تفاصيل الملزمة</div>
+      <div class="phone">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="sb-icons">
+            <svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><rect x="0" y="7" width="3" height="5" rx="1" fill="currentColor"/><rect x="4.5" y="5" width="3" height="7" rx="1" fill="currentColor"/><rect x="9" y="2.5" width="3" height="9.5" rx="1" fill="currentColor"/><rect x="13.5" y="0" width="3" height="12" rx="1" fill="currentColor"/></svg>
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M8 10.5 1 4.2A9.6 9.6 0 0 1 15 4.2L8 10.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            <svg width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><rect x="0.5" y="0.5" width="19" height="11" rx="3" stroke="currentColor"/><rect x="2.5" y="2.5" width="13" height="7" rx="1.5" fill="currentColor"/><path d="M21.5 4v4a2.2 2.2 0 0 0 0-4Z" fill="currentColor"/></svg>
+          </span>
+        </div>
+        <div class="screen-body">
+          <svg class="wave" viewBox="0 0 390 190" preserveAspectRatio="none" aria-hidden="true">
+            <path class="w1" d="M0 96c58-26 104 14 168 6s96-40 156-24 66 30 66 30v82H0V96Z" fill="var(--primary-soft)"/>
+            <path class="w2" d="M0 128c62-20 108 12 170 6s100-30 158-16 62 22 62 22v50H0v-62Z" fill="var(--primary)" opacity=".22"/>
+          </svg>
+
+          <div class="topbar">
+            <button class="icon-btn plain" type="button" aria-label="رجوع">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <h2>تفاصيل الملزمة</h2>
+            <button class="icon-btn plain" type="button" aria-label="حفظ">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 4h12v17l-6-4-6 4V4Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+
+          <div class="scroll">
+            <div class="detail-hero">
+              <div class="cover cover-lg">
+                <span class="c-title">الكيمياء</span>
+                <span class="c-rule"></span>
+                <span class="c-title" style="font-size:11px;opacity:.85">السادس العلمي</span>
+              </div>
+              <div class="d-body">
+                <h2>الكيمياء — السادس العلمي</h2>
+                <div class="teacher">الأستاذ أيوب أحمد</div>
+                <div style="margin-top:10px"><span class="badge badge-soft">ملزمة مدرّس</span></div>
+              </div>
+            </div>
+
+            <div class="stats-row">
+              <div class="st"><div class="v">222</div><div class="k">صفحة</div></div>
+              <div class="sep"></div>
+              <div class="st"><div class="v">19.8 MB</div><div class="k">الحجم</div></div>
+              <div class="sep"></div>
+              <div class="st"><div class="v">2027</div><div class="k">السنة</div></div>
+            </div>
+
+            <div class="section-head"><h3>الفصول</h3></div>
+            <div class="chips-row">
+              <span class="chip active">الثرموداينمك</span>
+              <span class="chip">الاتزان الكيميائي</span>
+              <span class="chip">الاتزان الأيوني</span>
+            </div>
+
+            <div class="section-head"><h3>عن الملزمة</h3></div>
+            <div class="card">
+              <p class="caption" style="color:var(--muted);line-height:1.9">ملزمة شاملة تغطّي منهج الكيمياء للسادس العلمي بأسلوب مبسّط، مع أمثلة محلولة وتمارين وزارية في نهاية كل فصل. مناسبة للمراجعة السريعة قبل الامتحان.</p>
+            </div>
+
+            <div class="section-head"><h3>الأجزاء</h3></div>
+            <div class="parts-list">
+              <div class="part-row">
+                <span class="idx">1</span>
+                <div class="p-body">
+                  <h4>الجزء 1</h4>
+                  <div class="r">الصفحات 1 – 111</div>
+                </div>
+                <button class="btn btn-outline btn-sm" type="button">افتح</button>
+              </div>
+              <div class="part-row">
+                <span class="idx">2</span>
+                <div class="p-body">
+                  <h4>الجزء 2</h4>
+                  <div class="r">الصفحات 112 – 222</div>
+                </div>
+                <button class="btn btn-outline btn-sm" type="button">افتح</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="sticky-bar">
+            <button class="btn btn-outline" type="button">اجعلها ملزمتي</button>
+            <button class="btn btn-primary" type="button">ابدأ القراءة</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 7. READER ============ -->
+    <section class="screen-block">
+      <div class="screen-label"><span class="num">7</span> القارئ</div>
+      <div class="phone">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="sb-icons">
+            <svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><rect x="0" y="7" width="3" height="5" rx="1" fill="currentColor"/><rect x="4.5" y="5" width="3" height="7" rx="1" fill="currentColor"/><rect x="9" y="2.5" width="3" height="9.5" rx="1" fill="currentColor"/><rect x="13.5" y="0" width="3" height="12" rx="1" fill="currentColor"/></svg>
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M8 10.5 1 4.2A9.6 9.6 0 0 1 15 4.2L8 10.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            <svg width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><rect x="0.5" y="0.5" width="19" height="11" rx="3" stroke="currentColor"/><rect x="2.5" y="2.5" width="13" height="7" rx="1.5" fill="currentColor"/><path d="M21.5 4v4a2.2 2.2 0 0 0 0-4Z" fill="currentColor"/></svg>
+          </span>
+        </div>
+        <div class="screen-body">
+          <div class="topbar">
+            <button class="icon-btn plain" type="button" aria-label="رجوع">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <h2 style="font-size:15px">الكيمياء — السادس العلمي</h2>
+            <span class="caption muted" style="white-space:nowrap">52 / 288</span>
+          </div>
+
+          <div style="padding:0 20px 12px;position:relative;z-index:10">
+            <div class="segmented">
+              <span class="on">الكتاب</span>
+              <span>الملزمة</span>
+            </div>
+          </div>
+
+          <div class="reader-page">
+            <div class="rp-head">
+              <span>الفصل الثاني — الاتزان الكيميائي</span>
+              <span>52</span>
+            </div>
+            <h3>مبدأ لوشاتلييه</h3>
+            <p>ينصّ مبدأ لوشاتلييه على أنّ النظام في حالة <span class="hl">اتزان</span> يقاوم أي تغيير يطرأ عليه بإزاحة موضع الاتزان في الاتجاه الذي يقلّل أثر ذلك التغيير.</p>
+            <p>وعند زيادة <span class="uline">تركيز</span> أحد المتفاعلات، يتجه التفاعل نحو تكوين النواتج لإعادة الاتزان من جديد.</p>
+            <p>أمّا رفع درجة الحرارة فيؤثر في التفاعلات الماصّة للحرارة بزيادة تكوين النواتج، بينما يقلّل تكوينها في التفاعلات الطاردة.</p>
+            <p>ويمكن تلخيص أثر التغييرات على موضع الاتزان في الجدول الآتي، مع الانتباه إلى أنّ <span class="hl">الضغط</span> يؤثر فقط في الأنظمة الغازية.</p>
+          </div>
+
+          <div class="reader-toolbar">
+            <button class="tool on" type="button" aria-label="قلم">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20l4-1 10-10-3-3L5 16l-1 4Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="M14 6l3 3" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+              قلم
+            </button>
+            <button class="tool" type="button" aria-label="تظليل">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 15 15 5l4 4-10 10H5v-4Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="M4 21h16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+              تظليل
+            </button>
+            <button class="tool" type="button" aria-label="ممحاة">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 20h11M4.5 15.5l7-7 6 6-4.5 4.5H7L4.5 15.5Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/></svg>
+              ممحاة
+            </button>
+            <button class="tool" type="button" aria-label="تراجع">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 7 4 12l5 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 12h10a5 5 0 0 1 0 10h-2" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              تراجع
+            </button>
+            <button class="tool" type="button" aria-label="تكبير">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.75"/><path d="M11 8v6M8 11h6M20 20l-3.5-3.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+              تكبير
+            </button>
+            <button class="tool" type="button" aria-label="تصغير">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.75"/><path d="M8 11h6M20 20l-3.5-3.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+              تصغير
+            </button>
+            <button class="tool" type="button" aria-label="بحث">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.75"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+              بحث
+            </button>
+          </div>
+
+          <div class="sheet">
+            <div class="grab"></div>
+            <h4>إعدادات القراءة</h4>
+            <div class="row-label">حجم الخط</div>
+            <div class="font-sizes">
+              <span class="fs" style="font-size:13px">A</span>
+              <span class="fs on" style="font-size:16px">A</span>
+              <span class="fs" style="font-size:19px">A</span>
+            </div>
+            <div class="row-label">لون الصفحة</div>
+            <div class="swatch-row">
+              <span class="swatch on"><span class="dotc" style="background:#FFFFFF"></span>فاتح</span>
+              <span class="swatch"><span class="dotc" style="background:#1A2527"></span>داكن</span>
+              <span class="swatch"><span class="dotc" style="background:#F3E7D3"></span>سيبيا</span>
+            </div>
+            <div class="row-label">السطوع</div>
+            <div class="brightness">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="color:var(--muted)"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.75"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+              <div class="track"><span></span><i class="knob"></i></div>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="color:var(--primary)"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.75"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 8. EXAM SETUP ============ -->
+    <section class="screen-block">
+      <div class="screen-label"><span class="num">8</span> إعداد الاختبار</div>
+      <div class="phone">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="sb-icons">
+            <svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><rect x="0" y="7" width="3" height="5" rx="1" fill="currentColor"/><rect x="4.5" y="5" width="3" height="7" rx="1" fill="currentColor"/><rect x="9" y="2.5" width="3" height="9.5" rx="1" fill="currentColor"/><rect x="13.5" y="0" width="3" height="12" rx="1" fill="currentColor"/></svg>
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M8 10.5 1 4.2A9.6 9.6 0 0 1 15 4.2L8 10.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            <svg width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><rect x="0.5" y="0.5" width="19" height="11" rx="3" stroke="currentColor"/><rect x="2.5" y="2.5" width="13" height="7" rx="1.5" fill="currentColor"/><path d="M21.5 4v4a2.2 2.2 0 0 0 0-4Z" fill="currentColor"/></svg>
+          </span>
+        </div>
+        <div class="screen-body">
+          <svg class="wave" viewBox="0 0 390 190" preserveAspectRatio="none" aria-hidden="true">
+            <path class="w1" d="M0 96c58-26 104 14 168 6s96-40 156-24 66 30 66 30v82H0V96Z" fill="var(--primary-soft)"/>
+            <path class="w2" d="M0 128c62-20 108 12 170 6s100-30 158-16 62 22 62 22v50H0v-62Z" fill="var(--primary)" opacity=".22"/>
+          </svg>
+
+          <div class="topbar">
+            <button class="icon-btn plain" type="button" aria-label="رجوع">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <h2>اختبار الفصل الأول</h2>
+          </div>
+
+          <div class="scroll">
+            <div class="exam-card">
+              <div class="ec-top">
+                <span class="ec-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 4h6v3H9V4Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="M6 5h12v15H6V5Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <div>
+                  <h3>اختبار نهاية الفصل</h3>
+                  <div class="ec-sub">10 أسئلة — 15 دقيقة</div>
+                </div>
+              </div>
+              <button class="btn btn-primary btn-block" type="button">ابدأه</button>
+            </div>
+
+            <div class="section-head"><h3>مصدر الأسئلة</h3></div>
+            <div class="chips-row">
+              <span class="chip active">وزاري</span>
+              <span class="chip">شهري</span>
+              <span class="chip">تدريبي</span>
+              <span class="chip">مختلط</span>
+            </div>
+
+            <div class="section-head"><h3>عدد الأسئلة</h3></div>
+            <div class="stepper">
+              <button class="st-btn" type="button" aria-label="إنقاص">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 12h12" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+              </button>
+              <span class="st-val">10 <small>سؤال</small></span>
+              <button class="st-btn" type="button" aria-label="زيادة">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 6v12M6 12h12" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+              </button>
+            </div>
+            <div class="caption muted" style="text-align:center;margin-top:10px">يمكنك الاختيار من 10 إلى 50 سؤالًا</div>
+          </div>
+
+          <div class="sticky-bar">
+            <button class="btn btn-primary btn-block" type="button">ابدأ الاختبار</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 9. EXAM QUESTION ============ -->
+    <section class="screen-block">
+      <div class="screen-label"><span class="num">9</span> سؤال الاختبار</div>
+      <div class="phone">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="sb-icons">
+            <svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><rect x="0" y="7" width="3" height="5" rx="1" fill="currentColor"/><rect x="4.5" y="5" width="3" height="7" rx="1" fill="currentColor"/><rect x="9" y="2.5" width="3" height="9.5" rx="1" fill="currentColor"/><rect x="13.5" y="0" width="3" height="12" rx="1" fill="currentColor"/></svg>
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M8 10.5 1 4.2A9.6 9.6 0 0 1 15 4.2L8 10.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            <svg width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><rect x="0.5" y="0.5" width="19" height="11" rx="3" stroke="currentColor"/><rect x="2.5" y="2.5" width="13" height="7" rx="1.5" fill="currentColor"/><path d="M21.5 4v4a2.2 2.2 0 0 0 0-4Z" fill="currentColor"/></svg>
+          </span>
+        </div>
+        <div class="screen-body">
+          <svg class="wave" viewBox="0 0 390 190" preserveAspectRatio="none" aria-hidden="true">
+            <path class="w1" d="M0 96c58-26 104 14 168 6s96-40 156-24 66 30 66 30v82H0V96Z" fill="var(--primary-soft)"/>
+            <path class="w2" d="M0 128c62-20 108 12 170 6s100-30 158-16 62 22 62 22v50H0v-62Z" fill="var(--primary)" opacity=".22"/>
+          </svg>
+
+          <div class="topbar">
+            <button class="icon-btn plain" type="button" aria-label="إغلاق">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+            </button>
+            <h2 style="font-size:15px">اختبار الفصل الأول</h2>
+            <span class="caption muted" style="white-space:nowrap">12:40</span>
+          </div>
+
+          <div class="scroll">
+            <div class="q-progress">
+              <span class="qp-text">السؤال 3 من 10</span>
+              <div class="progress"><span style="width:30%"></span></div>
+            </div>
+
+            <div class="q-card">
+              <div class="q-tag">اختيار من متعدد</div>
+              <h3>ما وحدة التعجيل؟</h3>
+            </div>
+
+            <div style="margin-top:16px">
+              <div class="option selected">
+                <span class="mark">أ</span>
+                <span class="o-text">متر لكل ثانية</span>
+              </div>
+              <div class="option correct">
+                <span class="mark">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12l5 5 9-10" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span class="o-text">متر لكل ثانية مربّعة</span>
+              </div>
+              <div class="option wrong">
+                <span class="mark">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+                </span>
+                <span class="o-text">نيوتن</span>
+              </div>
+              <div class="option">
+                <span class="mark">د</span>
+                <span class="o-text">جول</span>
+              </div>
+            </div>
+
+            <div class="feedback">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.75"/><path d="M8 12.5l2.5 2.5L16 9.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              إجابة صحيحة، أحسنت
+            </div>
+          </div>
+
+          <div class="sticky-bar">
+            <button class="btn btn-outline" type="button">تخطَّ</button>
+            <button class="btn btn-primary" type="button">التالي</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 10. EXAM RESULT ============ -->
+    <section class="screen-block">
+      <div class="screen-label"><span class="num">10</span> نتيجة الاختبار</div>
+      <div class="phone">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="sb-icons">
+            <svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><rect x="0" y="7" width="3" height="5" rx="1" fill="currentColor"/><rect x="4.5" y="5" width="3" height="7" rx="1" fill="currentColor"/><rect x="9" y="2.5" width="3" height="9.5" rx="1" fill="currentColor"/><rect x="13.5" y="0" width="3" height="12" rx="1" fill="currentColor"/></svg>
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M8 10.5 1 4.2A9.6 9.6 0 0 1 15 4.2L8 10.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            <svg width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><rect x="0.5" y="0.5" width="19" height="11" rx="3" stroke="currentColor"/><rect x="2.5" y="2.5" width="13" height="7" rx="1.5" fill="currentColor"/><path d="M21.5 4v4a2.2 2.2 0 0 0 0-4Z" fill="currentColor"/></svg>
+          </span>
+        </div>
+        <div class="screen-body">
+          <svg class="wave" viewBox="0 0 390 190" preserveAspectRatio="none" aria-hidden="true">
+            <path class="w1" d="M0 96c58-26 104 14 168 6s96-40 156-24 66 30 66 30v82H0V96Z" fill="var(--primary-soft)"/>
+            <path class="w2" d="M0 128c62-20 108 12 170 6s100-30 158-16 62 22 62 22v50H0v-62Z" fill="var(--primary)" opacity=".22"/>
+          </svg>
+
+          <div class="topbar">
+            <button class="icon-btn plain" type="button" aria-label="رجوع">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <h2>نتيجة الاختبار</h2>
+          </div>
+
+          <div class="scroll">
+            <div class="score-ring">
+              <svg viewBox="0 0 168 168" aria-hidden="true">
+                <circle cx="84" cy="84" r="72" fill="none" stroke="var(--line)" stroke-width="12"/>
+                <circle cx="84" cy="84" r="72" fill="none" stroke="var(--primary)" stroke-width="12" stroke-linecap="round" stroke-dasharray="452" stroke-dashoffset="90"/>
+              </svg>
+              <div class="sr-inner">
+                <div class="n">8/10</div>
+                <div class="d">نتيجتك</div>
+              </div>
+            </div>
+
+            <div style="text-align:center;margin-top:16px;position:relative;z-index:1">
+              <h3 style="font-size:18px;font-weight:700">أداء جيد، واصل التقدّم</h3>
+              <p class="caption muted" style="margin-top:6px">أجبت بشكل صحيح على 8 أسئلة من أصل 10. راجع أخطاءك لتثبيت الفكرة.</p>
+            </div>
+
+            <div class="section-head"><h3>قوة المواضيع</h3></div>
+            <div class="topic-bar">
+              <div class="tb-head"><span>الثرموداينمك</span><span class="v">90%</span></div>
+              <div class="progress"><span style="width:90%"></span></div>
+            </div>
+            <div class="topic-bar">
+              <div class="tb-head"><span>الاتزان الكيميائي</span><span class="v">75%</span></div>
+              <div class="progress"><span style="width:75%"></span></div>
+            </div>
+            <div class="topic-bar">
+              <div class="tb-head"><span>الاتزان الأيوني</span><span class="v">60%</span></div>
+              <div class="progress"><span style="width:60%"></span></div>
+            </div>
+          </div>
+
+          <div class="sticky-bar">
+            <button class="btn btn-outline" type="button">راجع أخطائي</button>
+            <button class="btn btn-primary" type="button">اختبار نقاط الضعف</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 11. LOGIN ============ -->
+    <section class="screen-block">
+      <div class="screen-label"><span class="num">11</span> تسجيل الدخول</div>
+      <div class="phone">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="sb-icons">
+            <svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><rect x="0" y="7" width="3" height="5" rx="1" fill="currentColor"/><rect x="4.5" y="5" width="3" height="7" rx="1" fill="currentColor"/><rect x="9" y="2.5" width="3" height="9.5" rx="1" fill="currentColor"/><rect x="13.5" y="0" width="3" height="12" rx="1" fill="currentColor"/></svg>
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M8 10.5 1 4.2A9.6 9.6 0 0 1 15 4.2L8 10.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            <svg width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><rect x="0.5" y="0.5" width="19" height="11" rx="3" stroke="currentColor"/><rect x="2.5" y="2.5" width="13" height="7" rx="1.5" fill="currentColor"/><path d="M21.5 4v4a2.2 2.2 0 0 0 0-4Z" fill="currentColor"/></svg>
+          </span>
+        </div>
+        <div class="screen-body">
+          <svg class="wave" viewBox="0 0 390 190" preserveAspectRatio="none" aria-hidden="true">
+            <path class="w1" d="M0 96c58-26 104 14 168 6s96-40 156-24 66 30 66 30v82H0V96Z" fill="var(--primary-soft)"/>
+            <path class="w2" d="M0 128c62-20 108 12 170 6s100-30 158-16 62 22 62 22v50H0v-62Z" fill="var(--primary)" opacity=".22"/>
+          </svg>
+
+          <div class="login-wrap">
+            <div class="brand">
+              <div class="logo-lockup">
+                <span class="logo-mark" aria-hidden="true">
+                  <svg width="52" height="52" viewBox="0 0 48 48" fill="none">
+                    <path d="M24 4C13 4 4 12.6 4 23.2c0 6.1 3 11.5 7.8 15l-1.6 6.4c-.3 1.2 1 2.2 2 1.5l7.2-4.6c1.5.3 3 .4 4.6.4 11 0 20-8.6 20-19.2S35 4 24 4Z" fill="var(--primary)"/>
+                    <path d="M15 28c3.4-6.6 8.4-10.4 15-11.4" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+                    <circle cx="17.5" cy="27.5" r="2.1" fill="#fff"/>
+                    <circle cx="24" cy="22.5" r="2.1" fill="#fff"/>
+                    <circle cx="30.5" cy="17.5" r="2.1" fill="var(--accent)"/>
+                  </svg>
+                </span>
+                <span class="wordmark">صديقك</span>
+              </div>
+              <p>رفيقك في دراسة الكيمياء</p>
+            </div>
+
+            <h2>أهلًا بعودتك</h2>
+            <p class="lead">سجّل دخولك لمتابعة قراءتك واختباراتك</p>
+
+            <div class="field">
+              <label>رقم الهاتف أو البريد الإلكتروني</label>
+              <div class="input">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3" stroke="currentColor" stroke-width="1.75"/><path d="M11 18.5h2" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+                <span>0770 123 4567</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>كلمة المرور</label>
+              <div class="input">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="3" stroke="currentColor" stroke-width="1.75"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+                <span>••••••••</span>
+              </div>
+            </div>
+
+            <span class="forgot">نسيت كلمة المرور؟</span>
+
+            <button class="btn btn-primary btn-block" type="button">تسجيل الدخول</button>
+
+            <div class="divider">أو</div>
+
+            <button class="btn btn-outline btn-block" type="button">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.75"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+              المتابعة كزائر
+            </button>
+
+            <div class="signup-line">ليس لديك حساب؟ <b>إنشاء حساب جديد</b></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 12. LOGOUT CONFIRMATION ============ -->
+    <section class="screen-block">
+      <div class="screen-label"><span class="num">12</span> تأكيد تسجيل الخروج</div>
+      <div class="phone">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="sb-icons">
+            <svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><rect x="0" y="7" width="3" height="5" rx="1" fill="currentColor"/><rect x="4.5" y="5" width="3" height="7" rx="1" fill="currentColor"/><rect x="9" y="2.5" width="3" height="9.5" rx="1" fill="currentColor"/><rect x="13.5" y="0" width="3" height="12" rx="1" fill="currentColor"/></svg>
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M8 10.5 1 4.2A9.6 9.6 0 0 1 15 4.2L8 10.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            <svg width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><rect x="0.5" y="0.5" width="19" height="11" rx="3" stroke="currentColor"/><rect x="2.5" y="2.5" width="13" height="7" rx="1.5" fill="currentColor"/><path d="M21.5 4v4a2.2 2.2 0 0 0 0-4Z" fill="currentColor"/></svg>
+          </span>
+        </div>
+        <div class="screen-body">
+          <div class="overlay">
+            <div class="confirm-sheet">
+              <span class="cs-icon">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 8l-4 4 4 4M6 12h9" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <h3>تسجيل الخروج</h3>
+              <p>هل تريد تسجيل الخروج من حسابك؟ يمكنك العودة في أي وقت، وستبقى ملازمك المحفوظة كما هي.</p>
+              <div class="cs-actions">
+                <button class="btn btn-danger btn-block" type="button">تسجيل الخروج</button>
+                <button class="btn btn-outline btn-block" type="button">إلغاء</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 13. ACCOUNT ============ -->
+    <section class="screen-block">
+      <div class="screen-label"><span class="num">13</span> حسابي</div>
+      <div class="phone">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="sb-icons">
+            <svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><rect x="0" y="7" width="3" height="5" rx="1" fill="currentColor"/><rect x="4.5" y="5" width="3" height="7" rx="1" fill="currentColor"/><rect x="9" y="2.5" width="3" height="9.5" rx="1" fill="currentColor"/><rect x="13.5" y="0" width="3" height="12" rx="1" fill="currentColor"/></svg>
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M8 10.5 1 4.2A9.6 9.6 0 0 1 15 4.2L8 10.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            <svg width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><rect x="0.5" y="0.5" width="19" height="11" rx="3" stroke="currentColor"/><rect x="2.5" y="2.5" width="13" height="7" rx="1.5" fill="currentColor"/><path d="M21.5 4v4a2.2 2.2 0 0 0 0-4Z" fill="currentColor"/></svg>
+          </span>
+        </div>
+        <div class="screen-body">
+          <svg class="wave" viewBox="0 0 390 190" preserveAspectRatio="none" aria-hidden="true">
+            <path class="w1" d="M0 96c58-26 104 14 168 6s96-40 156-24 66 30 66 30v82H0V96Z" fill="var(--primary-soft)"/>
+            <path class="w2" d="M0 128c62-20 108 12 170 6s100-30 158-16 62 22 62 22v50H0v-62Z" fill="var(--primary)" opacity=".22"/>
+          </svg>
+
+          <div class="topbar">
+            <span class="logo-lockup" style="flex:1 1 auto;min-width:0">
+              <span class="logo-mark" aria-hidden="true">
+                <svg width="30" height="30" viewBox="0 0 48 48" fill="none">
+                  <path d="M24 4C13 4 4 12.6 4 23.2c0 6.1 3 11.5 7.8 15l-1.6 6.4c-.3 1.2 1 2.2 2 1.5l7.2-4.6c1.5.3 3 .4 4.6.4 11 0 20-8.6 20-19.2S35 4 24 4Z" fill="var(--primary)"/>
+                  <path d="M15 28c3.4-6.6 8.4-10.4 15-11.4" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+                  <circle cx="17.5" cy="27.5" r="2.1" fill="#fff"/>
+                  <circle cx="24" cy="22.5" r="2.1" fill="#fff"/>
+                  <circle cx="30.5" cy="17.5" r="2.1" fill="var(--accent)"/>
+                </svg>
+              </span>
+              <span class="wordmark" style="font-size:18px">صديقك<span class="dot"></span></span>
+            </span>
+            <h2 style="flex:0 0 auto">حسابي</h2>
+            <button class="icon-btn plain" type="button" aria-label="الإعدادات">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.75"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.2 5.2l2.1 2.1M16.7 16.7l2.1 2.1M18.8 5.2l-2.1 2.1M7.3 16.7l-2.1 2.1" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+
+          <div class="scroll">
+            <div class="profile-head">
+              <span class="avatar avatar-lg">ع</span>
+              <div class="p-body">
+                <h2>علي حسين</h2>
+                <div class="sub">السادس العلمي — الفرع العلمي</div>
+                <div style="margin-top:8px"><span class="badge">طالب مجتهد</span></div>
+              </div>
+            </div>
+
+            <div class="stat-cards">
+              <div class="stat-card"><div class="v">52</div><div class="k">صفحات مقروءة</div></div>
+              <div class="stat-card"><div class="v">7</div><div class="k">اختبارات</div></div>
+              <div class="stat-card"><div class="v">14</div><div class="k">ساعات دراسة</div></div>
+            </div>
+
+            <div class="section-head"><h3>الحساب</h3></div>
+            <div class="rows">
+              <div class="row-item">
+                <span class="r-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.75"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+                </span>
+                <span class="r-label">معلوماتي</span>
+                <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 6l-6 6 6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="row-item">
+                <span class="r-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0V4Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="M8 6H5v2a3 3 0 0 0 3 3M16 6h3v2a3 3 0 0 1-3 3M12 13v4M9 20h6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span class="r-label">إنجازاتي</span>
+                <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 6l-6 6 6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="row-item">
+                <span class="r-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 4h12v17l-6-4-6 4V4Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/></svg>
+                </span>
+                <span class="r-label">الملازم المحفوظة</span>
+                <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 6l-6 6 6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="row-item">
+                <span class="r-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8Z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.7 20a2 2 0 0 1-3.4 0" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+                </span>
+                <span class="r-label">الإشعارات</span>
+                <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 6l-6 6 6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="row-item">
+                <span class="r-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.75"/><path d="M12 3a9 9 0 0 1 0 18" fill="currentColor" opacity=".25"/></svg>
+                </span>
+                <span class="r-label">الألوان والمظهر</span>
+                <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 6l-6 6 6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="row-item">
+                <span class="r-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.75"/><path d="M12 11v5M12 8h.01" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+                </span>
+                <span class="r-label">حول التطبيق</span>
+                <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 6l-6 6 6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="row-item danger">
+                <span class="r-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 8l-4 4 4 4M6 12h9" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span class="r-label">تسجيل الخروج</span>
+                <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 6l-6 6 6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <nav class="bottom-nav">
+            <span class="nav-item">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-9.5Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/></svg>
+              الرئيسية
+            </span>
+            <span class="nav-item">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5V5.5Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3H6.5A2.5 2.5 0 0 1 4 20.5Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/></svg>
+              الكتب
+            </span>
+            <span class="nav-item">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h9l4 4v14H6V3Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="M14 3v5h5" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="M9 13h6M9 17h4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+              الملازم
+            </span>
+            <span class="nav-item">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 4h6v3H9V4Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="M6 5h12v15H6V5Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              الاختبارات
+            </span>
+            <span class="nav-item active">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.75"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+              حسابي
+            </span>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 14. SETTINGS ============ -->
+    <section class="screen-block">
+      <div class="screen-label"><span class="num">14</span> الإعدادات</div>
+      <div class="phone">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="sb-icons">
+            <svg width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true"><rect x="0" y="7" width="3" height="5" rx="1" fill="currentColor"/><rect x="4.5" y="5" width="3" height="7" rx="1" fill="currentColor"/><rect x="9" y="2.5" width="3" height="9.5" rx="1" fill="currentColor"/><rect x="13.5" y="0" width="3" height="12" rx="1" fill="currentColor"/></svg>
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M8 10.5 1 4.2A9.6 9.6 0 0 1 15 4.2L8 10.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            <svg width="24" height="12" viewBox="0 0 24 12" fill="none" aria-hidden="true"><rect x="0.5" y="0.5" width="19" height="11" rx="3" stroke="currentColor"/><rect x="2.5" y="2.5" width="13" height="7" rx="1.5" fill="currentColor"/><path d="M21.5 4v4a2.2 2.2 0 0 0 0-4Z" fill="currentColor"/></svg>
+          </span>
+        </div>
+        <div class="screen-body">
+          <svg class="wave" viewBox="0 0 390 190" preserveAspectRatio="none" aria-hidden="true">
+            <path class="w1" d="M0 96c58-26 104 14 168 6s96-40 156-24 66 30 66 30v82H0V96Z" fill="var(--primary-soft)"/>
+            <path class="w2" d="M0 128c62-20 108 12 170 6s100-30 158-16 62 22 62 22v50H0v-62Z" fill="var(--primary)" opacity=".22"/>
+          </svg>
+
+          <div class="topbar">
+            <button class="icon-btn plain" type="button" aria-label="رجوع">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <h2>الإعدادات</h2>
+          </div>
+
+          <div class="scroll">
+            <div class="card card-lg">
+              <div class="profile-head">
+                <span class="avatar">ع</span>
+                <div class="p-body">
+                  <h2 style="font-size:17px">علي حسين</h2>
+                  <div class="sub">السادس العلمي — الفرع العلمي</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-head"><h3>الألوان</h3></div>
+            <div class="card">
+              <div class="theme-swatches">
+                <span class="theme-swatch on">
+                  <span class="ts-dot mint">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12l5 5 9-10" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                  نعناعي
+                </span>
+                <span class="theme-swatch">
+                  <span class="ts-dot ocean"></span>
+                  محيطي
+                </span>
+                <span class="theme-swatch">
+                  <span class="ts-dot lavender"></span>
+                  بنفسجي
+                </span>
+                <span class="theme-swatch">
+                  <span class="ts-dot dark"></span>
+                  داكن
+                </span>
+              </div>
+            </div>
+
+            <div class="section-head"><h3>التفضيلات</h3></div>
+            <div class="rows">
+              <div class="row-item">
+                <span class="r-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/></svg>
+                </span>
+                <span class="r-label">الوضع الداكن</span>
+                <span class="toggle"></span>
+              </div>
+              <div class="row-item">
+                <span class="r-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7V5h16v2M12 5v14M9 19h6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span class="r-label">حجم الخط</span>
+                <span class="caption muted">متوسط</span>
+                <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 6l-6 6 6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="row-item">
+                <span class="r-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8Z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.7 20a2 2 0 0 1-3.4 0" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+                </span>
+                <span class="r-label">الإشعارات</span>
+                <span class="toggle on"></span>
+              </div>
+              <div class="row-item">
+                <span class="r-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.75"/><path d="M12 11v5M12 8h.01" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+                </span>
+                <span class="r-label">حول التطبيق</span>
+                <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 6l-6 6 6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="row-item danger">
+                <span class="r-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 8l-4 4 4 4M6 12h9" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span class="r-label">تسجيل الخروج</span>
+                <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 6l-6 6 6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="page-foot">
+    <p>© 2026 صديقك — عرض تصميم واجهات. صُنع بـ <a href="https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=showcase">caffeine.ai</a></p>
+  </footer>
+</main>
+</body>
+</html>
